@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+  </head>
+  <style></style>
+  <body>
+    <div id="app">
+      <div class="container">
+        <div class="menu-wrapper animate__animated animate__backInRight">
+          <div class="top-header">
+            <div class="top-header-job-icon">
+              <img src="./images/police.png" alt="">
+              <h2 v-for="job in jobtable" >{{job.police}}</h2>
+              <img src="./images/ems.png" alt="">
+              <h2 v-for="job in jobtable" >{{job.ems}}</h2>
+              <img src="./images/mechanic.png" alt="">
+              <h2 v-for="job in jobtable" >{{job.mechanic}}</h2>
+            </div>
+          </div>
+          <div class="account-header">
+            <div class="account-header-in" v-for="data in playertable" v-if="data.playerhex == playeridentifier">
+              <div class="player-image-border">
+                <div v-if="data.playersteamid && service == 'steam'">
+                  <img class="player-image "  v-if="data.playerimage " v-bind:src="data.playerimage">
+                </div>
+                <div v-if="data.playersteamid && service == 'discord' ">
+                  <img class="player-image" v-bind:src="data.playersteamid" alt="">
+                </div>
+                <div v-if=" service == 'none' ">
+                
+                </div>
+              </div>
+              <h2>{{data.playername}}</h2>
+              <div class="job-name">
+                <h2>Job</h2>
+                <h1>PING</h1>
+                <h3>{{data.playerjob}}</h3>
+                <h4>{{data.playerping}}ms</h4>
+              </div>
+            </div>
+          </div>
+          <div class="search-header">
+            <div class="search-header-in">
+              <input type="text" placeholder="Name..." v-model="search">
+              <h2>
+                <span>{{playertable.length}}</span> -{{maxplayer}}
+              </h2>
+            </div>
+          </div>
+          <div class="player-header">
+            <div class="player-box" v-for="data in filterByTerm" v-if="data.playerhex != playeridentifier">
+              <h2 class="playerid">ID: <span> {{data.playerid}}</span>
+              </h2>
+         
+               
+                <img class="playerimg2"   v-if="data.playerimage " v-bind:src="data.playerimage">
+              
+                <img class="playerimg3" v-if="service == 'discord'" v-bind:src="data.playersteamid">
+            
+              
+              <h3 class="playername">{{data.playername}}</h3>
+              <img src="./images/wifi.png" alt="">
+              <h4 class="playerms">{{data.playerping}}ms</h4>
+            </div>
+          </div>
+          <div class="servername">{{servername}}</div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="nui://game/ui/jquery.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <script src="https://unpkg.com/vuex@2.0.0"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+  <script src="script.js"></script>
+
+</html>
